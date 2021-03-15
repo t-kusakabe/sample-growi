@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  growi:
+    build:
+      context: .
+      dockerfile: ./docker/growi/Dockerfile
+    container_name: growi
+    ports:
+      - 3000:3000
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/growi
+
+  mongo:
+    build:
+      context: .
+      dockerfile: ./docker/mongo/Dockerfile
+    container_name: mongo
+    volumes:
+      - mongo_db:/data/db
+
+volumes:
+  mongo_db:
